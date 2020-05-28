@@ -4,7 +4,8 @@ Created on Sun May 24 17:30:44 2020
 
 @author: dx788
 """
-    
+
+import re
 import requests
 import pandas as pd
 from bs4 import BeautifulSoup
@@ -41,20 +42,38 @@ def UDNcrawl(keyword, strBegin, strEnd):
     soup = BeautifulSoup(html_doc)
     posts = soup.find_all('div', class_ ="news")
 
+    time = []
     link = []
     title = []
     summary = []
     
     for post in posts:
+        time.append(strBegin)
         link.append('https://udndata.com' + post.find('a').get('href'))
-        title.append(post.find('a').text)
+        title.append(re.findall('\..+$', post.find('a').text)[0][1:])
         summary.append(post.find('p').text)
     
-    temp = {'link':link, 'title':title, 'summary':summary}
+    temp = {'time':time, 'link':link, 'title':title, 'summary':summary}
     result = pd.DataFrame(temp)
     return result
 
-df = UDNcrawl('美吾華', '20200101', '20200524')
+# Create Time Query LUT
+month = ['{num:02d}'.format(num=i) for i in range(1, 13)]
+day = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+
+# Initialize the empty df
+df = pd.DataFrame()
+
+for i in range(5):
+    for j in range(1, day[i]+1):
+        query = '2020' + month[i] + str('{num:02d}'.format(num=j))
+        print(query)
+        result = UDNcrawl('防疫概念股', query, query)
+        df = df.append(result)
+
+df = df.reset_index()
+df.to_csv('UDN_2020.csv', index=False)
+df = pd.read_csv('UDN_2020.csv')
         
 # rr = requests.get(postUrl)
 # html_doc = rr.text

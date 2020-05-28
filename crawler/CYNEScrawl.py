@@ -27,8 +27,8 @@ def CYNEScrawl(strBegin, strEnd):
     # Strend = '2020-01-01 18:59:59'
     
     # 日期字串轉成時間格式
-    begineTime = time.strptime(strBegin,"%Y-%m-%d %H:%M:%S")
-    endTime = time.strptime(strEnd,"%Y-%m-%d %H:%M:%S")
+    begineTime = time.strptime(strBegin,"%Y%m%d")
+    endTime = time.strptime(strEnd,"%Y%m%d")
     # 時間格式轉換成時間戳記
     startAt = int(time.mktime(begineTime))
     endAt = int(time.mktime(endTime))
@@ -60,4 +60,4 @@ def CYNEScrawl(strBegin, strEnd):
     result = pd.DataFrame(temp)
     return result
 
-df = CYNEScrawl('2020-04-01 16:00:00', '2020-04-30 18:59:59')
+df = CYNEScrawl('20200402', '20200402')

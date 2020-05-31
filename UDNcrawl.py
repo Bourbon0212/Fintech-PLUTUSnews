@@ -58,22 +58,21 @@ def UDNcrawl(keyword, strBegin, strEnd):
     return result
 
 # Create Time Query LUT
-month = ['{num:02d}'.format(num=i) for i in range(1, 13)]
-day = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+# month = ['{num:02d}'.format(num=i) for i in range(1, 13)]
+# day = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
 
 # Initialize the empty df
-df = pd.DataFrame()
+# df = pd.DataFrame()
 
-for i in range(5):
-    for j in range(1, day[i]+1):
-        query = '2020' + month[i] + str('{num:02d}'.format(num=j))
-        print(query)
-        result = UDNcrawl('防疫概念股', query, query)
-        df = df.append(result)
+# for i in range(12):
+#    for j in range(1, day[i]+1):
+#        query = '2019' + month[i] + str('{num:02d}'.format(num=j))
+#        print(query)
+#        result = UDNcrawl('防疫概念股', query, query)
+#        df = df.append(result)
 
-df = df.reset_index()
-df.to_csv('UDN_2020.csv', index=False)
-df = pd.read_csv('UDN_2020.csv')
+# df = df.reset_index()
+# df.to_csv('UDN_2019.csv', index=False)
         
 # rr = requests.get(postUrl)
 # html_doc = rr.text

@@ -6,26 +6,27 @@ Created on Sun May 31 17:34:51 2020
 """
 
 import pickle
-from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestRegressor
-from sklearn.metrics import mean_squared_error as MSE
+from sklearn.model_selection import GridSearchCV
 
 with open('word_freq.pkl', 'rb') as file:
-    df = pickle.load(file)
+    df_t = pickle.load(file)
 
 # 資料預處裡
-df = df.fillna(0)
+df_t = df_t.fillna(0)
 
 # Train test data split    
-y = df['importance'].values
-X = df.drop(['importance'], axis=1)
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=1)
+y = df_t['importance'].values
+X = df_t.drop(['importance'], axis=1)
 
-# Instantiate rf
-rf = RandomForestRegressor(n_estimators=25,
-            random_state=2)
-rf.fit(X_train, y_train)
+# Instantiate rf_cv
+rf = RandomForestRegressor()
+param_grid = {'n_estimators': list(range(1,30))}
+rf_cv = GridSearchCV(rf, param_grid, cv=10)
+rf_cv.fit(X, y)
+print(rf_cv.best_score_)
+print(rf_cv.best_params_)
 
-y_pred = rf.predict(X_test)
-rmse_test = MSE(y_test, y_pred) ** (1/2)
-print('Test set RMSE of rf: {:.2f}'.format(rmse_test))
+with open('NEWSrf_model.pkl', 'wb') as file:
+    pickle.dump(rf_cv ,file)
+    

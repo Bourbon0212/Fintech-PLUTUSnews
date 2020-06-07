@@ -12,6 +12,22 @@ from ckip import CkipSegmenter
 from collections import Counter
 
 def CKIPsegmenter(news, threshold):
+    
+    '''
+    Generate word terms frequency matrix.
+    
+    Parameters:
+        news (pd.DataFrame): News corpus collect through UDNcrawl
+        threshold (unt): Minimum counts for word terms
+
+    Returns:
+        news_t (pd.DataFrame): Word terms frequency matrix from the news
+    '''   
+    
+    # 讀入停用詞
+    with open('stopWords.pkl', 'rb') as file:
+        stopWords = pickle.load(file)
+    
     # Initialize CKIP segmenter
     segmenter = CkipSegmenter()
     
@@ -19,7 +35,9 @@ def CKIPsegmenter(news, threshold):
     news['content'] = news['title'] + '\n' + news['summary']
 
     # 用segmenter斷詞
+    # news['content'] = news['content'].apply(lambda x: x.encode('cp950'))
     news['segment'] = news['content'].apply(lambda x: segmenter.seg(x).tok)
+    news['segment'] = news['segment'].apply(lambda x: list(filter(lambda a: a not in stopWords and a != '\n', x)))
 
     # Terms of Frequency
     news_t = pd.DataFrame()
@@ -31,13 +49,3 @@ def CKIPsegmenter(news, threshold):
     news_t = news_t.iloc[:, thres.values]
 
     return news_t
-
-# df = pd.read_csv('UDN_test.csv')
-# df_t = CKIPsegmenter(df, 4)
-
-# 把 importance 欄位補回來
-# df_t['importance'] = df['importance'].values
-
-# 暫存詞頻矩陣
-# with open('word_freq.pkl', 'wb') as file:
-#    pickle.dump(df_t ,file)

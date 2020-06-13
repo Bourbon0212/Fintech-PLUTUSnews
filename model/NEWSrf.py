@@ -9,7 +9,7 @@ import pickle
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.model_selection import GridSearchCV
 
-with open('segmenter\word_freq.pkl', 'rb') as file:
+with open('./word_freq.pkl', 'rb') as file:
     df_t = pickle.load(file)
 
 # 資料預處裡

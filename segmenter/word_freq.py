@@ -11,7 +11,7 @@ import pickle
 from CKIPsegmenter import CKIPsegmenter
 
 # 生成詞頻矩陣
-df = pd.read_csv('UDNcrawler_results.csv', parse_dates = ['time'])
+df = pd.read_csv('./crawler/UDNcrawler_results.csv', parse_dates = ['time'])
 df = df.sort_values("time", ascending=False)
 df_t = CKIPsegmenter(df, 6)
 

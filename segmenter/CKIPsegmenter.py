@@ -25,7 +25,7 @@ def CKIPsegmenter(news, threshold):
     '''   
     
     # 讀入停用詞
-    with open('segmenter\stopWords.pkl', 'rb') as file:
+    with open('./segmenter/stopWords.pkl', 'rb') as file:
         stopWords = pickle.load(file)
     
     # Initialize CKIP segmenter

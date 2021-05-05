@@ -8,8 +8,8 @@ Created on Sun May 31 19:32:50 2020
 import pickle
 import pandas as pd
 
-from .crawler.UDNcrawl import UDNcrawl
-from .segmenter.CKIPsegmenter import CKIPsegmenter
+from crawler.UDNcrawl import UDNcrawl
+from segmenter.CKIPsegmenter import CKIPsegmenter
 
 def PLUTUSnews(date, stock, importance):
     
@@ -71,4 +71,4 @@ def PLUTUSnews(date, stock, importance):
         
     return news_result, stock_result
 
-nn, ss = PLUTUSnews('20200529', ['美吾華', '恆大'], 0.8)
+nn, ss = PLUTUSnews('20210430', ['美吾華', '恆大'], 0.3)

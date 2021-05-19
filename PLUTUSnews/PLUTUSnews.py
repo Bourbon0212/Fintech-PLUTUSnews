@@ -8,8 +8,8 @@ Created on Sun May 31 19:32:50 2020
 import pickle
 import pandas as pd
 
-from crawler.UDNcrawl import UDNcrawl
-from segmenter.CKIPsegmenter import CKIPsegmenter
+from PLUTUSnews.crawler.UDNcrawl import UDNcrawl
+from PLUTUSnews.segmenter.CKIPsegmenter import CKIPsegmenter
 
 def PLUTUSnews(date, stock, importance):
     

@@ -57,7 +57,7 @@ def handle_text_message(event):
         ret.append(TextSendMessage(text = "無法辨識格式，以預設替代"))
     
     query_time = textm if tparse != False else nowtime
-    nn, ss = PLUTUSnews(text, ['美吾華', '恆大'], 0.3)
+    nn, ss = PLUTUSnews(textm, ['美吾華', '恆大'], 0.3)
     print("PLUTUS is running!")
         
     dd = nn.append(ss, ignore_index=True)

@@ -10,6 +10,8 @@ from linebot.models import (
         PostbackTemplateAction
     )
 
+from PLUTUSnews.PLUTUSnews import PLUTUSnews
+
 app = Flask(__name__, static_url_path='')
 app.config['JSON_AS_ASCII'] = False
 
@@ -57,7 +59,10 @@ def handle_text_message(event):
         #                 ]
         #             )
         #         )
-        ret = [ret1]
+        
+        PLUTUSnews('20210430', ['美吾華', '恆大'], 0.3)
+        ret2 = TextSendMessage(text = "PLUTUS is running!")
+        ret = [ret1, ret2]
         # 讓『機器人』說出來
         line_bot_api.reply_message(event.reply_token, ret)
     else:

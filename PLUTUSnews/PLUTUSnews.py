@@ -56,6 +56,7 @@ def PLUTUSnews(date, stock, importance):
         news['prob'] = rf_cv.predict(df_news)
         news_result = news[news['prob'] > importance]
         news_result = news_result.iloc[:,:4]
+        print('PLUTUS news sucess!!')
         
     except:
         # 有 Error 的話回傳空資料表 (通常是中文轉碼錯誤)
@@ -71,4 +72,4 @@ def PLUTUSnews(date, stock, importance):
         
     return news_result, stock_result
 
-nn, ss = PLUTUSnews('20210430', ['美吾華', '恆大'], 0.3)
+# nn, ss = PLUTUSnews('20210430', ['美吾華', '恆大'], 0.3)

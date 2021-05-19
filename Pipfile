@@ -9,7 +9,15 @@ verify_ssl = true
 flask = "*"
 line-bot-sdk = "*"
 gunicorn = "*"
+numpy = "*"
 pandas = "*"
+re = "*"
+requests = "*"
+bs4 = "*"
+pickle = "*"
+sklearn = "*"
+ckip-segmenter = "*"
+collections = "*"
 
 [requires]
 python_version = "3.8"

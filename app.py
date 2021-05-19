@@ -66,7 +66,7 @@ def handle_text_message(event):
     if len(dd) != 0:
         ret.append = news_flex(title, link)
     else:
-        ret.append(TextSendMessage(text = "CKIP 編碼錯誤")
+        ret.append(TextSendMessage(text = "CKIP 編碼錯誤"))
         
     # 讓『機器人』說出來
     line_bot_api.reply_message(event.reply_token, ret)

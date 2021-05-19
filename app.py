@@ -1,14 +1,13 @@
 import os
-from flask import Flask, request, abort, jsonify, send_from_directory
+import datetime
+from flask import Flask, request, abort
 
 from linebot import LineBotApi, WebhookHandler
 from linebot.exceptions import LineBotApiError, InvalidSignatureError
 from linebot.models import (
         MessageEvent, TextMessage, TextSendMessage,
-        TemplateSendMessage, CarouselTemplate, PostbackEvent,
-        StickerMessage, StickerSendMessage, ImagemapSendMessage,
-        ImageMessage, ImageSendMessage, LocationMessage,
-        ConfirmTemplate, PostbackTemplateAction
+        TemplateSendMessage, PostbackEvent, ConfirmTemplate, 
+        PostbackTemplateAction
     )
 
 app = Flask(__name__, static_url_path='')
@@ -42,21 +41,23 @@ def callback():
 def handle_text_message(event):
     text = event.message.text
     userid = event.source.user_id
-
+    
+    nowtime = datetime.datetime.now().strftime('%Y%m%d')
+    
     # 決定你要讓『機器人』說甚麼話
-    if text == "安安你好":
-        ret1 = TextSendMessage(text = "你好挖，讓我們開始實作吧！")
-        ret2 = TemplateSendMessage(
-                    alt_text = 'Confirm template',
-                    template = ConfirmTemplate(
-                        text = "這是一個確認按鈕",
-                        actions = [
-                            PostbackTemplateAction(label = '左邊', text = '我按了左邊', data = 'left'),
-                            PostbackTemplateAction(label = '右邊', text = '我按了右邊', data = 'right')
-                        ]
-                    )
-                )
-        ret = [ret1, ret2]
+    if text == "現在時間":
+        ret1 = TextSendMessage(text = nowtime)
+        # ret2 = TemplateSendMessage(
+        #             alt_text = 'Confirm template',
+        #             template = ConfirmTemplate(
+        #                 text = "這是一個確認按鈕",
+        #                 actions = [
+        #                     PostbackTemplateAction(label = '左邊', text = '我按了左邊', data = 'left'),
+        #                     PostbackTemplateAction(label = '右邊', text = '我按了右邊', data = 'right')
+        #                 ]
+        #             )
+        #         )
+        ret = [ret1]
         # 讓『機器人』說出來
         line_bot_api.reply_message(event.reply_token, ret)
     else:

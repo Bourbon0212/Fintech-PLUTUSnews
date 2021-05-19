@@ -45,7 +45,7 @@ def news_flex(title, link):
                     "text": t,
                     "wrap": True,
                     "color": "#3C5C97",
-                    "size": "xs",
+                    "size": "sm",
                     "flex": 5,
                     "action": {
                         "type": "uri",

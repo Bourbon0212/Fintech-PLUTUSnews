@@ -72,4 +72,4 @@ def PLUTUSnews(date, stock, importance):
         
     return news_result, stock_result
 
-nn, ss = PLUTUSnews('20210425', ['美吾華', '恆大'], 0.3)
+# nn, ss = PLUTUSnews('20210425', ['美吾華', '恆大'], 0.3)

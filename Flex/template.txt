@@ -1,0 +1,77 @@
+{
+  "type": "bubble",
+  "body": {
+    "type": "box",
+    "layout": "vertical",
+    "contents": [
+      {
+        "type": "text",
+        "text": "新聞推播",
+        "weight": "bold",
+        "size": "xl"
+      },
+      {
+        "type": "box",
+        "layout": "vertical",
+        "margin": "lg",
+        "spacing": "sm",
+        "contents": [
+          {
+            "type": "box",
+            "layout": "baseline",
+            "spacing": "sm",
+            "contents": [
+              {
+                "type": "text",
+                "text": "疫苗護照競賽已開跑 台還在旅遊泡泡",
+                "wrap": true,
+                "color": "#3C5C97",
+                "size": "xs",
+                "flex": 5,
+                "action": {
+                  "type": "uri",
+                  "label": "link",
+                  "uri": "https://udndata.com/ndapp/Story?no=4&page=1&udndbid=udndata&SearchString=qL6szCuk6bTBPj0yMDIxMDQyNSuk6bTBPD0yMDIxMDQyNSuz%2BKdPPcFwpliz%2BHy4Z8DZpOmz%2BHzBcKZYsd%2Bz%2BHxVcGFwZXI%3D&sharepage=50&select=1&kind=2&article_date=2021-04-25&news_id=9801400",
+                  "altUri": {
+                    "desktop": "https://udndata.com/ndapp/Story?no=4&page=1&udndbid=udndata&SearchString=qL6szCuk6bTBPj0yMDIxMDQyNSuk6bTBPD0yMDIxMDQyNSuz%2BKdPPcFwpliz%2BHy4Z8DZpOmz%2BHzBcKZYsd%2Bz%2BHxVcGFwZXI%3D&sharepage=50&select=1&kind=2&article_date=2021-04-25&news_id=9801400"
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "margin": "lg",
+            "spacing": "sm",
+            "contents": [
+              {
+                "type": "box",
+                "layout": "baseline",
+                "spacing": "sm",
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": "疫苗護照競賽已開跑 台還在旅遊泡泡",
+                    "wrap": true,
+                    "color": "#3C5C97",
+                    "size": "xs",
+                    "flex": 5,
+                    "action": {
+                      "type": "uri",
+                      "label": "link",
+                      "uri": "https://udndata.com/ndapp/Story?no=4&page=1&udndbid=udndata&SearchString=qL6szCuk6bTBPj0yMDIxMDQyNSuk6bTBPD0yMDIxMDQyNSuz%2BKdPPcFwpliz%2BHy4Z8DZpOmz%2BHzBcKZYsd%2Bz%2BHxVcGFwZXI%3D&sharepage=50&select=1&kind=2&article_date=2021-04-25&news_id=9801400",
+                      "altUri": {
+                        "desktop": "https://udndata.com/ndapp/Story?no=4&page=1&udndbid=udndata&SearchString=qL6szCuk6bTBPj0yMDIxMDQyNSuk6bTBPD0yMDIxMDQyNSuz%2BKdPPcFwpliz%2BHy4Z8DZpOmz%2BHzBcKZYsd%2Bz%2BHxVcGFwZXI%3D&sharepage=50&select=1&kind=2&article_date=2021-04-25&news_id=9801400"
+                      }
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

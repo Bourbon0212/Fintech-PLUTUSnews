@@ -11,6 +11,7 @@ from linebot.models import (
     )
 
 from PLUTUSnews.PLUTUSnews import PLUTUSnews
+from Flex.flex import news_flex
 
 app = Flask(__name__, static_url_path='')
 app.config['JSON_AS_ASCII'] = False
@@ -45,30 +46,30 @@ def handle_text_message(event):
     userid = event.source.user_id
     
     nowtime = datetime.datetime.now().strftime('%Y%m%d')
-    
-    # 決定你要讓『機器人』說甚麼話
-    if text == "現在時間":
-        ret1 = TextSendMessage(text = nowtime)
-        # ret2 = TemplateSendMessage(
-        #             alt_text = 'Confirm template',
-        #             template = ConfirmTemplate(
-        #                 text = "這是一個確認按鈕",
-        #                 actions = [
-        #                     PostbackTemplateAction(label = '左邊', text = '我按了左邊', data = 'left'),
-        #                     PostbackTemplateAction(label = '右邊', text = '我按了右邊', data = 'right')
-        #                 ]
-        #             )
-        #         )
+    ret = [] # 欲回傳訊息包
+
+    try:
+        tparse = datetime.datetime.strptime(text, '%Y%m%d') # Validate input format
         
-        PLUTUSnews('20210430', ['美吾華', '恆大'], 0.3)
-        ret2 = TextSendMessage(text = "PLUTUS is running!")
-        ret = [ret1, ret2]
-        # 讓『機器人』說出來
-        line_bot_api.reply_message(event.reply_token, ret)
+    except:
+        tparse = False
+        ret.append(TextSendMessage(text = "您輸入：" + text))
+        ret.append(TextSendMessage(text = "無法辨識格式，以預設替代")
+        
+    query_time = text if tparse != False else nowtime
+    nn, ss = PLUTUSnews(text, ['美吾華', '恆大'], 0.3)
+    print("PLUTUS is running!")
+        
+    dd = nn.append(ss, ignore_index=True)
+    title = list(dd["title"]); link = list(dd["link"])
+    
+    if len(dd) != 0:
+        ret.append = news_flex(title, link)
     else:
-        ret = TextSendMessage(text = text)
-        # 讓『機器人』說出來
-        line_bot_api.reply_message(event.reply_token, ret)
+        ret.append(TextSendMessage(text = "CKIP 編碼錯誤")
+        
+    # 讓『機器人』說出來
+    line_bot_api.reply_message(event.reply_token, ret)
 
 """ 處理按鈕觸發事件 """
 @handler.add(PostbackEvent)

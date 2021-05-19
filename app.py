@@ -42,21 +42,21 @@ def callback():
 """ 處理文字訊息 """
 @handler.add(MessageEvent, message=TextMessage)
 def handle_text_message(event):
-    text = event.message.text
+    textm = event.message.text
     userid = event.source.user_id
     
     nowtime = datetime.datetime.now().strftime('%Y%m%d')
     ret = [] # 欲回傳訊息包
 
     try:
-        tparse = datetime.datetime.strptime(text, '%Y%m%d') # Validate input format
+        tparse = datetime.datetime.strptime(textm, '%Y%m%d') # Validate input format
         
     except:
         tparse = False
-        ret.append(TextSendMessage(text = "您輸入：" + text))
-        ret.append(TextSendMessage(text = "無法辨識格式，以預設替代")
-        
-    query_time = text if tparse != False else nowtime
+        ret.append(TextSendMessage(text = "您輸入：" + textm))
+        ret.append(TextSendMessage(text = "無法辨識格式，以預設替代"))
+    
+    query_time = textm if tparse != False else nowtime
     nn, ss = PLUTUSnews(text, ['美吾華', '恆大'], 0.3)
     print("PLUTUS is running!")
         

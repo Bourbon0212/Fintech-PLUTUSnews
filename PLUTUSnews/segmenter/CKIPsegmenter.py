@@ -25,7 +25,7 @@ def CKIPsegmenter(news, threshold):
     '''   
     
     # 讀入停用詞
-    with open('./segmenter/stopWords.pkl', 'rb') as file:
+    with open('./PLUTUSnews/segmenter/stopWords.pkl', 'rb') as file:
         stopWords = pickle.load(file)
     
     # Initialize CKIP segmenter
@@ -35,7 +35,7 @@ def CKIPsegmenter(news, threshold):
     news['content'] = news['title'] + '\n' + news['summary']
 
     # 用segmenter斷詞
-    # news['content'] = news['content'].apply(lambda x: x.encode('cp950')) # 解決cp950問題，但還不work
+    # news['content'] = news['content'].apply(lambda x: x.encode('cp950', 'ignore').) # 解決cp950問題，但還不work
     news['segment'] = news['content'].apply(lambda x: segmenter.seg(x).tok)
     news['segment'] = news['segment'].apply(lambda x: list(filter(lambda a: a not in stopWords and a != '\n', x)))
 

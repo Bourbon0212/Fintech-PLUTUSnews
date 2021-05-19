@@ -30,11 +30,11 @@ def PLUTUSnews(date, stock, importance):
     # stock = ['美吾華', '恆大']
     
     # 讀入詞庫
-    with open('/PLUTUSnews/word_freq.pkl', 'rb') as file:
+    with open('./PLUTUSnews/word_freq.pkl', 'rb') as file:
         df_t = pickle.load(file)
         
     # 讀入新聞分類模型
-    with open('/PLUTUSnews/NEWSrf_model.pkl', 'rb') as file:
+    with open('./PLUTUSnews/NEWSrf_model.pkl', 'rb') as file:
         rf_cv = pickle.load(file)
 
     # 詞庫有關防疫的詞彙
@@ -72,4 +72,4 @@ def PLUTUSnews(date, stock, importance):
         
     return news_result, stock_result
 
-# nn, ss = PLUTUSnews('20210430', ['美吾華', '恆大'], 0.3)
+nn, ss = PLUTUSnews('20210425', ['美吾華', '恆大'], 0.3)

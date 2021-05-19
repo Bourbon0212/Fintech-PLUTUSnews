@@ -64,7 +64,7 @@ def handle_text_message(event):
     title = list(dd["title"]); link = list(dd["link"])
     
     if len(dd) != 0:
-        ret.append = news_flex(title, link)
+        ret.append(news_flex(title, link))
     else:
         ret.append(TextSendMessage(text = "CKIP 編碼錯誤"))
         

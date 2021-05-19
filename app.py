@@ -46,29 +46,29 @@ def handle_text_message(event):
     userid = event.source.user_id
     
     nowtime = datetime.datetime.now().strftime('%Y%m%d')
-    ret = [] # 欲回傳訊息包
 
     try:
         tparse = datetime.datetime.strptime(textm, '%Y%m%d') # Validate input format
+        ret1 = (TextSendMessage(text = "時間辨識成功"))
         
     except:
         tparse = False
-        ret.append(TextSendMessage(text = "您輸入：" + textm))
-        ret.append(TextSendMessage(text = "無法辨識格式，以預設替代"))
+        ret1 = (TextSendMessage(text = "您輸入：" + textm + "無法辨識格式，以預設替代"))
     
     query_time = textm if tparse != False else nowtime
-    nn, ss = PLUTUSnews(textm, ['美吾華', '恆大'], 0.3)
+    nn, ss = PLUTUSnews(query_time, ['美吾華', '恆大'], 0.3)
     print("PLUTUS is running!")
         
     dd = nn.append(ss, ignore_index=True)
     title = list(dd["title"]); link = list(dd["link"])
     
     if len(dd) != 0:
-        ret.append(news_flex(title, link))
+        ret2 = news_flex(title, link)
     else:
-        ret.append(TextSendMessage(text = "CKIP 編碼錯誤"))
+        ret2 = TextSendMessage(text = "CKIP 編碼錯誤")
         
     # 讓『機器人』說出來
+    ret = [ret1, ret2]
     line_bot_api.reply_message(event.reply_token, ret)
 
 """ 處理按鈕觸發事件 """
